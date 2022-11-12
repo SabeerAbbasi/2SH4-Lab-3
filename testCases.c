@@ -24,7 +24,17 @@
 		
 		CuAssertStrEquals(tc, "World!", my_strcat("","World!"));
 	}
+
+	void TestQ1_two_strings_personal(CuTest *tc) {
+
+			CuAssertStrEquals(tc, "SabeerAbbasi", my_strcat("Sabeer","Abbasi"));
+	}
+
+	void TestQ1_first_oneChar(CuTest *tc){
+
+		CuAssertStrEquals(tc, "fg", my_strcat("f", "g"));
     
+	}
 //===========================================================
 //=================Question 2================================
 	void TestQ2_find_notThere(CuTest *tc) {
@@ -53,6 +63,22 @@
 
 		CuAssertIntEquals(tc, expected, actual);
 
+	}
+
+	void TestQ2_find_There_second(CuTest *tc)
+	{
+
+		char inputFile[] = "students.txt";
+		int size;
+		// create list using the input file
+		student **Clist = create_class_list(inputFile, &size);
+
+		int expected = 2;
+		int actual = find(6547, Clist, size);
+
+		CuAssertIntEquals(tc, expected, actual);
+		//deallocating the used memories
+		free(Clist);
 	}
 
 	void TestQ2_inputGradesAndCalculateFinal(CuTest *tc) {
@@ -172,18 +198,21 @@
 		SUITE_ADD_TEST(suite, TestQ1_two_strings); 
 		SUITE_ADD_TEST(suite, TestQ1_second_empty);
 		SUITE_ADD_TEST(suite, TestQ1_first_empty);
+		SUITE_ADD_TEST(suite, TestQ1_two_strings_personal);
+		SUITE_ADD_TEST(suite, TestQ1_first_oneChar);
 
 
 		SUITE_ADD_TEST(suite, TestQ2_find_notThere);
-		SUITE_ADD_TEST(suite, TestQ2_find_There); 
+		SUITE_ADD_TEST(suite, TestQ2_find_There);
+		SUITE_ADD_TEST(suite, TestQ2_find_There_second);
 		SUITE_ADD_TEST(suite, TestQ2_inputGradesAndCalculateFinal);
 
 
-		SUITE_ADD_TEST(suite, TestQ3_readandSort1);
-		SUITE_ADD_TEST(suite, TestQ3_readandSort2);
+		//SUITE_ADD_TEST(suite, TestQ3_readandSort1);
+		//SUITE_ADD_TEST(suite, TestQ3_readandSort2);
         
        
 
 		return suite;
-	}
+		}
     
